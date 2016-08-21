@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="HCDesign.Views.MainCanvas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HCDesign.Views"
+             xmlns:vm="clr-namespace:HCDesign.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="525">
+
+    <UserControl.Resources>
+        <vm:MainCanvasVM x:Key="mainCanvasVm"></vm:MainCanvasVM>
+    </UserControl.Resources>
+
+    <Canvas Name="MainCanvasControl" DataContext="{Binding Source={StaticResource mainCanvasVm}}" 
+            HorizontalAlignment="Left" Height="290" Width="515" Margin="10,10,10,10" VerticalAlignment="Top"
+            Background="{Binding mainCanvasVm.OnMouseDown}"
+            MouseDown="OnMouseDown"/>
+
+
+</UserControl>

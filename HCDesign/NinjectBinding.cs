@@ -8,6 +8,7 @@
 #endregion
 
 using System;
+using HCDesign.Models;
 using Ninject.Modules;
 
 namespace HCDesign
@@ -16,7 +17,7 @@ namespace HCDesign
     {
         public override void Load()
         {
-            throw new NotImplementedException();
+            Bind<ISettingsModel>().To<SettingsModel>();
         }
     }
 }

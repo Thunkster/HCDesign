@@ -11,18 +11,17 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using HCDesign.Commands;
+using HCDesign.Common;
 using HCDesign.Models;
+using Ninject;
 
 namespace HCDesign.ViewModels
 {
     public class MainMenuVM
     {
-        private readonly SettingsModel settingsModel;
+        [Inject]
+        private ISettingsModel SettingsModel { get; set; }
 
-        public MainMenuVM()
-        {
-            settingsModel = new SettingsModel(this);
-        }
 
         public ICommand NewCommand => new CommandRouter(New);
         public ICommand OpenCommand => new CommandRouter(Open);
@@ -66,6 +65,7 @@ namespace HCDesign.ViewModels
 
         public void Quit()
         {
+            SettingsModel.Save();
             Application.Current.Shutdown(0);
         }
         #endregion
@@ -73,7 +73,7 @@ namespace HCDesign.ViewModels
         #region SettingsMenu Commands
         public void ShowGrid()
         {
-            settingsModel.ShowGrid = (!settingsModel.ShowGrid);
+            SettingsModel.SetSetting(SettingsEnum.ShowGrid, (!SettingsModel.GetSetting(SettingsEnum.ShowGrid)));
         }
         #endregion
     }

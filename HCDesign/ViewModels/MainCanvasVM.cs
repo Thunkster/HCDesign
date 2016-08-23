@@ -3,31 +3,29 @@
 // Copyright 2016-2016 Emil Saraga (Thunkster)
 // Solution: HCDesign, Project: HCDesign
 // Filename: MainCanvasVM.cs
-// Date: 2016-08-19
+// Date: 2016-08-22
 
 #endregion
 
+using System;
 using System.Windows.Input;
-using HCDesign.Commands;
 using HCDesign.Models;
 
 namespace HCDesign.ViewModels
 {
     public class MainCanvasVM
     {
-        private readonly MainCanvasModel canvasModel;
+        private readonly MainCanvasModel model;
 
-        public MainCanvasVM(SettingsModel settings)
+        public MainCanvasVM()
         {
-            canvasModel = new MainCanvasModel(settings);
+            model = new MainCanvasModel();
         }
 
 
         public void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
-
-        public MainCanvasModel Model => canvasModel;
     }
 }

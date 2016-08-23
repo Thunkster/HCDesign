@@ -17,10 +17,12 @@ namespace HCDesign.Models
         // Get any setting from the model:
         dynamic GetSetting(SettingsEnum setting);
 
+        void SetSetting(SettingsEnum setting, dynamic value);
+
         // Load settings model from file:
-        Settings Load();
+        void Load();
 
         // Save settings model to file:
-        void Save(Settings settings);
+        void Save();
     }
 }

@@ -7,34 +7,82 @@
 
 #endregion
 
+using System;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using System.Xml.Serialization;
 using HCDesign.Common;
-using HCDesign.ViewModels;
+
 
 namespace HCDesign.Models
 {
-    public class SettingsModel : INotifyPropertyChanged, ISettingsModel
+    public class SettingsModel : ISettingsModel, INotifyPropertyChanged
     {
-        private readonly MainMenuVM mainMenuVM;
-        private readonly Settings settings;
+        private Settings settings;
 
-        public SettingsModel(MainMenuVM mainMenuVm)
+        public SettingsModel()
         {
-            mainMenuVM = mainMenuVm;
-            settings = Load();
+             Load();
         }
 
-        public bool ShowGrid
+        public dynamic GetSetting(SettingsEnum setting)
+        {
+            switch (setting)
+            {
+                case SettingsEnum.ShowGrid:
+                    return ShowGrid;
+
+                case SettingsEnum.LastDirectory:
+                    return LastDirectory;
+
+                case SettingsEnum.BackgroundBrush:
+                    return BackgroundBrush;
+
+                case SettingsEnum.ForegroundBrush:
+                    return ForegroundBrush;
+            }
+
+            return null;
+        }
+
+        public void SetSetting(SettingsEnum setting, dynamic value)
+        {
+            switch (setting)
+            {
+                case SettingsEnum.ShowGrid:
+                    ShowGrid = value;
+                    break;
+
+                case SettingsEnum.LastDirectory:
+                    LastDirectory = value;
+                    break;
+
+                case SettingsEnum.BackgroundBrush:
+                    BackgroundBrush = value;
+                    break;
+
+                case SettingsEnum.ForegroundBrush:
+                    ForegroundBrush = value;
+                    break;
+
+                default:
+                    throw new NotImplementedException(setting.ToString());
+            }
+        }
+
+
+
+        // Private:
+        // ////////////////////////////////////// 
+        private bool ShowGrid
         {
             get { return settings.ShowGrid; }
             set { settings.ShowGrid = value; OnPropertyChanged(); }
         }
 
-        public string LastDirectory
+        private string LastDirectory
         {
             get { return settings.LastDirectory; }
             set { settings.LastDirectory = value; OnPropertyChanged(); }
@@ -42,43 +90,49 @@ namespace HCDesign.Models
 
 
         // Main Canvas:
-        public Brush BackgroundBrush => settings.BackgroundBrush;
-        public Brush ForegroundBrush => settings.ForegroundBrush;
-
-
-        public dynamic GetSetting(SettingsEnum setting)
+        private Color BackgroundBrush
         {
-            throw new System.NotImplementedException();
+            get { return settings.BackgroundBrush; }
+            set { settings.BackgroundBrush = value; OnPropertyChanged(); }
         }
+
+        private Color ForegroundBrush
+        {
+            get { return settings.ForegroundBrush; }
+            set { settings.ForegroundBrush = value; OnPropertyChanged(); }
+        }
+
 
 
         #region ISettingsModel
-        public Settings Load()
+        public void Load()
         {
             var filePath = Properties.Settings.Default.AppSettingsPath;
-            var loadedSetting = new Settings();
 
             if (!File.Exists(filePath))
             {
-                return loadedSetting;
+                settings = new Settings();
+                Save();
+
+                return;
             }
 
             var xmlSerializer = new XmlSerializer(typeof(Settings));
-            var textStream = new StreamReader(filePath);
-
-            xmlSerializer.Deserialize(textStream);
-
-            return loadedSetting;
+            using (var textStream = new StreamReader(filePath))
+            {
+                xmlSerializer.Deserialize(textStream);
+            }
         }
 
-        public void Save(Settings settings)
+        public void Save()
         {
             var filePath = Properties.Settings.Default.AppSettingsPath;
 
             var xmlSerializer = new XmlSerializer(typeof(Settings));
-            var textStream = new StreamWriter(filePath);
-
-            xmlSerializer.Serialize(textStream, settings);
+            using (var textStream = new StreamWriter(filePath))
+            {
+                xmlSerializer.Serialize(textStream, settings);
+            }
         }
         #endregion 
 

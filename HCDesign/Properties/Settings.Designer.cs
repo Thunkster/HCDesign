@@ -25,7 +25,7 @@ namespace HCDesign.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"AppSettings.xml\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\AppSettings.xml")]
         public string AppSettingsPath {
             get {
                 return ((string)(this["AppSettingsPath"]));

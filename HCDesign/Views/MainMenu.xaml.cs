@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿#region Copyright notice & File header
+
+// Copyright 2016-2016 Emil Saraga (Thunkster)
+// Solution: HCDesign, Project: HCDesign
+// Filename: MainMenu.xaml.cs
+// Date: 2016-08-22
+
+#endregion
+
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HCDesign.Views
 {
     /// <summary>
-    /// Interaction logic for MainMenu.xaml
+    ///     Interaction logic for MainMenu.xaml
     /// </summary>
     public partial class MainMenu : UserControl
     {

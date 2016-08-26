@@ -82,15 +82,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommandRouter.cs" />
+    <Compile Include="Common\ControlsNinjectModule.cs" />
     <Compile Include="Common\SettingsEnum.cs" />
     <Compile Include="Models\ISettingsModel.cs" />
     <Compile Include="Models\MainCanvasModel.cs" />
     <Compile Include="Models\MainMenuModel.cs" />
     <Compile Include="Models\SettingsModel.cs" />
-    <Compile Include="NinjectBinding.cs" />
+    <Compile Include="ProgramKernel.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="ViewModels\MainCanvasVM.cs" />
-    <Compile Include="ViewModels\MainMenuVM.cs" />
+    <Compile Include="ViewModels\MainCanvasVm.cs" />
+    <Compile Include="ViewModels\MainMenuVm.cs" />
+    <Compile Include="VmLocator.cs" />
     <Compile Include="Views\MainCanvas.xaml.cs">
       <DependentUpon>MainCanvas.xaml</DependentUpon>
     </Compile>

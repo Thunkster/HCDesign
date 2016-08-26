@@ -18,13 +18,25 @@ using HCDesign.Common;
 
 namespace HCDesign.Models
 {
-    public class SettingsModel : ISettingsModel, INotifyPropertyChanged
+    public class SettingsModel : ISettingsModel, INotifyPropertyChanged, IDisposable
     {
-        private Settings settings;
+        private bool isDirty = false;
+        private bool isLoaded = false;
 
-        public SettingsModel()
+        private Settings settings = new Settings();
+
+        public void Initialize()
         {
-             Load();
+            if (isDirty)
+            {
+                Save();
+                return;
+            }
+
+            if (!isLoaded)
+            {
+                Load();
+            }
         }
 
         public dynamic GetSetting(SettingsEnum setting)
@@ -37,14 +49,15 @@ namespace HCDesign.Models
                 case SettingsEnum.LastDirectory:
                     return LastDirectory;
 
-                case SettingsEnum.BackgroundBrush:
-                    return BackgroundBrush;
+                case SettingsEnum.BackgroundColor:
+                    return BackgroundColor;
 
-                case SettingsEnum.ForegroundBrush:
-                    return ForegroundBrush;
+                case SettingsEnum.ForegroundColor:
+                    return ForegroundColor;
+
+                default:
+                    throw new NotImplementedException(setting.ToString());
             }
-
-            return null;
         }
 
         public void SetSetting(SettingsEnum setting, dynamic value)
@@ -59,20 +72,21 @@ namespace HCDesign.Models
                     LastDirectory = value;
                     break;
 
-                case SettingsEnum.BackgroundBrush:
-                    BackgroundBrush = value;
+                case SettingsEnum.BackgroundColor:
+                    BackgroundColor = value;
                     break;
 
-                case SettingsEnum.ForegroundBrush:
-                    ForegroundBrush = value;
+                case SettingsEnum.ForegroundColor:
+                    ForegroundColor = value;
                     break;
 
                 default:
                     throw new NotImplementedException(setting.ToString());
             }
+            isDirty = true;
         }
 
-
+        #region Private method implementation
 
         // Private:
         // ////////////////////////////////////// 
@@ -90,19 +104,19 @@ namespace HCDesign.Models
 
 
         // Main Canvas:
-        private Color BackgroundBrush
+        private Color BackgroundColor
         {
-            get { return settings.BackgroundBrush; }
-            set { settings.BackgroundBrush = value; OnPropertyChanged(); }
+            get { return settings.BackgroundColor; }
+            set { settings.BackgroundColor = value; OnPropertyChanged(); }
         }
 
-        private Color ForegroundBrush
+        private Color ForegroundColor
         {
-            get { return settings.ForegroundBrush; }
-            set { settings.ForegroundBrush = value; OnPropertyChanged(); }
+            get { return settings.ForegroundColor; }
+            set { settings.ForegroundColor = value; OnPropertyChanged(); }
         }
 
-
+        #endregion
 
         #region ISettingsModel
         public void Load()
@@ -111,17 +125,18 @@ namespace HCDesign.Models
 
             if (!File.Exists(filePath))
             {
-                settings = new Settings();
+                settings = Settings.FromDefault();
                 Save();
-
-                return;
             }
-
-            var xmlSerializer = new XmlSerializer(typeof(Settings));
-            using (var textStream = new StreamReader(filePath))
+            else
             {
-                xmlSerializer.Deserialize(textStream);
+                var xmlSerializer = new XmlSerializer(typeof(Settings));
+                using (var textStream = new StreamReader(filePath))
+                {
+                    settings = (Settings)xmlSerializer.Deserialize(textStream);
+                }
             }
+            isLoaded = true;
         }
 
         public void Save()
@@ -133,6 +148,8 @@ namespace HCDesign.Models
             {
                 xmlSerializer.Serialize(textStream, settings);
             }
+
+            isDirty = false;
         }
         #endregion 
 
@@ -144,6 +161,16 @@ namespace HCDesign.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        #region IDesposable
+
+        public void Dispose()
+        {
+            Save();
+            isLoaded = false;
+        }
+
+        #endregion 
 
     }
 }

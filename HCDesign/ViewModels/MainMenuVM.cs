@@ -13,26 +13,26 @@ using System.Windows.Input;
 using HCDesign.Commands;
 using HCDesign.Common;
 using HCDesign.Models;
-using Ninject;
+
 
 namespace HCDesign.ViewModels
 {
-    public class MainMenuVM
+    public class MainMenuVm
     {
-        [Inject]
-        private ISettingsModel SettingsModel { get; set; }
+        private ISettingsModel SettingsModel { get; }
 
+        public MainMenuVm(ISettingsModel settingsModel)
+        {
+            SettingsModel = settingsModel;
+            SettingsModel.Initialize();
+        }
 
+        #region FileMenu
         public ICommand NewCommand => new CommandRouter(New);
         public ICommand OpenCommand => new CommandRouter(Open);
         public ICommand SaveCommand => new CommandRouter(Save);
         public ICommand QuitCommand => new CommandRouter(Quit);
 
-        public ICommand ShowGridCommand => new CommandRouter(ShowGrid);
-
-
-
-        #region FileMenu Commands
         public void New()
         {
         }
@@ -70,10 +70,11 @@ namespace HCDesign.ViewModels
         }
         #endregion
 
-        #region SettingsMenu Commands
-        public void ShowGrid()
+        #region SettingsMenu
+        public object ShowGridChecked
         {
-            SettingsModel.SetSetting(SettingsEnum.ShowGrid, (!SettingsModel.GetSetting(SettingsEnum.ShowGrid)));
+            get { return SettingsModel.GetSetting(SettingsEnum.ShowGrid); }
+            set { SettingsModel.SetSetting(SettingsEnum.ShowGrid, value); }
         }
         #endregion
     }

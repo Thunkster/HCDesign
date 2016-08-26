@@ -7,10 +7,8 @@
 
 #endregion
 
-using System.Reflection;
 using System.Windows;
-using HCDesign.Models;
-using Ninject;
+
 
 namespace HCDesign
 {
@@ -19,16 +17,8 @@ namespace HCDesign
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ISettingsModel settingsModel;
-
         public MainWindow()
         {
-            // For Ninject:
-            var kernel = new StandardKernel();
-            kernel.Load(Assembly.GetExecutingAssembly());
-
-            settingsModel = kernel.Get<ISettingsModel>();
-
             InitializeComponent();
         }
     }

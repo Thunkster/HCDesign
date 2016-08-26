@@ -6,8 +6,17 @@
         xmlns:local="clr-namespace:HCDesign"
         xmlns:views="clr-namespace:HCDesign.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="HCDesign" Height="350" Width="525">
     <Grid>
-        <views:MainMenu></views:MainMenu>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <views:MainMenu x:Name="MainMenuControl" Grid.Row="0" />
+        <views:MainCanvas x:Name="MainCanvasControl" Grid.Row="1"/>
     </Grid>
 </Window>
+
+
+

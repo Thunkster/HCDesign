@@ -15,15 +15,6 @@ namespace HCDesign
     [XmlRoot( Namespace = "Thunkster.Net" )]
     public class Settings
     {
-        public Settings()
-        {
-            // Defaults:
-            ShowGrid = true;
-            LastDirectory = @".\";
-            BackgroundBrush = Color.FromRgb(64, 64, 64);
-            ForegroundBrush = Color.FromRgb(200, 64, 64);
-        }
-
         [XmlElement]
         public bool ShowGrid { get; set; }
 
@@ -31,9 +22,21 @@ namespace HCDesign
         public string LastDirectory { get; set; }
 
         [XmlElement]
-        public Color BackgroundBrush { get; set; }
+        public Color BackgroundColor { get; set; }
 
         [XmlElement]
-        public Color ForegroundBrush { get; set; }
+        public Color ForegroundColor { get; set; }
+
+        public static Settings FromDefault()
+        {
+            // Defaults:
+            return new Settings()
+            {
+                ShowGrid = true,
+                LastDirectory = @".\",
+                BackgroundColor = Color.FromRgb(0, 64, 64),
+                ForegroundColor = Color.FromRgb(200, 64, 64)
+            };
+        }
     }
 }

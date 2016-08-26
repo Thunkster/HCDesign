@@ -14,6 +14,9 @@ namespace HCDesign.Models
 {
     public interface ISettingsModel
     {
+        // Call prior to any operations (loads/saves)
+        void Initialize();
+
         // Get any setting from the model:
         dynamic GetSetting(SettingsEnum setting);
 

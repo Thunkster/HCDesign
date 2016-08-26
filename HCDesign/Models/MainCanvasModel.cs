@@ -3,10 +3,11 @@
 // Copyright 2016-2016 Emil Saraga (Thunkster)
 // Solution: HCDesign, Project: HCDesign
 // Filename: MainCanvasModel.cs
-// Date: 2016-08-21
+// Date: 2016-08-25
 
 #endregion
 
+using System;
 using System.Windows.Media;
 using HCDesign.Common;
 using Ninject;
@@ -15,16 +16,24 @@ namespace HCDesign.Models
 {
     public class MainCanvasModel
     {
-        [Inject]
-        private ISettingsModel SettingsModel { get; set; }
+        private readonly ISettingsModel settingsModel;
 
         public MainCanvasModel()
         {
-            BackgroundBrush = new SolidColorBrush(SettingsModel.GetSetting(SettingsEnum.BackgroundBrush));
-            ForegroundBrush = new SolidColorBrush(SettingsModel.GetSetting(SettingsEnum.ForegroundBrush));
+            settingsModel = null;
         }
 
-        public Brush BackgroundBrush { get; }
-        public Brush ForegroundBrush { get; }
+        [Inject]
+        public MainCanvasModel(ISettingsModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+            settingsModel = model;
+        }
+
+        public Brush BackgroundBrush => settingsModel == null ? new SolidColorBrush(Color.FromRgb(64,64,64)) : new SolidColorBrush(settingsModel.GetSetting(SettingsEnum.BackgroundColor));
+        public Brush ForegroundBrush => settingsModel == null ? new SolidColorBrush(Color.FromRgb(100, 100, 0)) : new SolidColorBrush(settingsModel.GetSetting(SettingsEnum.ForegroundColor));
     }
 }

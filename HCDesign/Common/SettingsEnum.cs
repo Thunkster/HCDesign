@@ -14,7 +14,7 @@ namespace HCDesign.Common
         ShowGrid,
         LastDirectory,
 
-        BackgroundBrush,
-        ForegroundBrush
+        BackgroundColor,
+        ForegroundColor
     }
 }

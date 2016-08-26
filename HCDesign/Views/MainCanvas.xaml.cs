@@ -2,15 +2,15 @@
 
 // Copyright 2016-2016 Emil Saraga (Thunkster)
 // Solution: HCDesign, Project: HCDesign
-// Filename: MainDrawingCanvas.xaml.cs
-// Date: 2016-08-19
+// Filename: MainCanvas.xaml.cs
+// Date: 2016-08-24
 
 #endregion
 
 using System.Windows.Controls;
 using System.Windows.Input;
-using HCDesign.Models;
 using HCDesign.ViewModels;
+
 
 namespace HCDesign.Views
 {
@@ -26,7 +26,7 @@ namespace HCDesign.Views
 
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-//            mainCanvasViewModel.OnMouseDown(sender, e);
+            //throw new System.NotImplementedException();
         }
     }
 }

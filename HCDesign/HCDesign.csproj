@@ -63,6 +63,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -87,11 +88,19 @@
     <Compile Include="Models\ISettingsModel.cs" />
     <Compile Include="Models\MainCanvasModel.cs" />
     <Compile Include="Models\MainMenuModel.cs" />
+    <Compile Include="Models\MainToolbarModel.cs" />
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="ProgramKernel.cs" />
+    <Compile Include="SchematicElements\ISchematicElement.cs" />
+    <Compile Include="SchematicElements\WireElement.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\MainCanvasVm.cs" />
     <Compile Include="ViewModels\MainMenuVm.cs" />
+    <Compile Include="ViewModels\MainToolbarVm.cs" />
+    <Compile Include="ViewModels\ToolbarButtonEnum.cs" />
+    <Compile Include="Views\MainToolbar.xaml.cs">
+      <DependentUpon>MainToolbar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VmLocator.cs" />
     <Compile Include="Views\MainCanvas.xaml.cs">
       <DependentUpon>MainCanvas.xaml</DependentUpon>
@@ -116,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainToolbar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

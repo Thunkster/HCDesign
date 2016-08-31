@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="HCDesign.Views.MainToolbar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HCDesign.Views"
+             xmlns:hcDesign="clr-namespace:HCDesign"
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="525">
+
+    <UserControl.Resources>
+        <hcDesign:VmLocator x:Key="VmLocator"/>
+    </UserControl.Resources>
+
+    <StackPanel DataContext="{Binding MainToolbarVm, Source={StaticResource VmLocator}}" Orientation="Horizontal">
+        
+        <ToggleButton Width="20" Content="W" Command="{Binding WireButton}" IsChecked="{Binding IsWireToggled, Mode=OneWay}"/>
+        <ToggleButton Width="20" Content="R" Command="{Binding ResitorButton}" IsChecked="{Binding IsResistorToggled, Mode=OneWay}"/>
+        <ToggleButton Width="20" Content="C" Command="{Binding CapacitorButton}" IsChecked="{Binding IsCapacitorToggled, Mode=OneWay}"/>
+        <ToggleButton Width="20" Content="L" Command="{Binding InductorButton}" IsChecked="{Binding IsInductorToggled, Mode=OneWay}"/>
+        <ToggleButton Width="20" Content="T" Command="{Binding TransistorButton}" IsChecked="{Binding IsTransistorToggled, Mode=OneWay}"/>
+            
+    </StackPanel>
+</UserControl>

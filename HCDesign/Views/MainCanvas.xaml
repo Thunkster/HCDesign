@@ -12,12 +12,11 @@
         <hcDesign:VmLocator x:Key="VmLocator"/>
     </UserControl.Resources>
 
-    <Canvas Name="MainCanvasControl" DataContext="{Binding MainCanvasVm, Source={StaticResource VmLocator}}"
+    <Canvas x:Name="MainCanvasControl" DataContext="{Binding MainCanvasVm, Source={StaticResource VmLocator}}"
             HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Height="280"
             Background="{Binding BackgroundBrush}"
-            MouseDown="OnMouseDown">
-
-        <Ellipse Name="SillyTest" Fill="{Binding ForegroundBrush}" Height="75" Width="100" Canvas.Left="140" Canvas.Top="140"></Ellipse>
+            Loaded="CanvasEvent"
+            MouseDown="CanvasEvent">
     </Canvas>
 
 

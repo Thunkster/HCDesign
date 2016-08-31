@@ -39,6 +39,12 @@ namespace HCDesign.Models
             }
         }
 
+        // This is for testing
+        public void InitializeForTesting(Settings testSettings)
+        {
+            settings = testSettings;
+        }
+
         public dynamic GetSetting(SettingsEnum setting)
         {
             switch (setting)

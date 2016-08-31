@@ -7,8 +7,8 @@
 
 #endregion
 
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using HCDesign.ViewModels;
 
 
@@ -24,9 +24,11 @@ namespace HCDesign.Views
             InitializeComponent();
         }
 
-        private void OnMouseDown(object sender, MouseButtonEventArgs e)
+        private void CanvasEvent(object sender, RoutedEventArgs eventArgs)
         {
-            //throw new System.NotImplementedException();
+            var context = (MainCanvasVm) MainCanvasControl.DataContext;
+
+            context.HandleEvent(sender, eventArgs);
         }
     }
 }

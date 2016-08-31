@@ -18,8 +18,9 @@ namespace HCDesign.Common
         {
             // MainCanvas:
             Bind<ISettingsModel>().To<SettingsModel>().InSingletonScope();
-            Bind<MainCanvasModel>().ToSelf().InTransientScope();
             Bind<MainMenuModel>().ToSelf().InTransientScope();
+            Bind<MainToolbarModel>().ToSelf().InTransientScope();
+            Bind<MainCanvasModel>().ToSelf().InTransientScope();
         }
     }
 }

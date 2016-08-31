@@ -7,14 +7,17 @@
         xmlns:views="clr-namespace:HCDesign.Views"
         mc:Ignorable="d"
         Title="HCDesign" Height="350" Width="525">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="AUto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         
         <views:MainMenu x:Name="MainMenuControl" Grid.Row="0" />
-        <views:MainCanvas x:Name="MainCanvasControl" Grid.Row="1"/>
+        <views:MainToolbar x:Name="MainToolbarControl" Grid.Row="1" />
+        <views:MainCanvas x:Name="MainCanvasControl" Grid.Row="2"/>
     </Grid>
 </Window>
 

@@ -14,6 +14,7 @@ namespace HCDesign
     public class VmLocator
     {
         public MainCanvasVm MainCanvasVm => ProgramKernel.Get<MainCanvasVm>();
+        public MainToolbarVm MainToolbarVm => ProgramKernel.Get<MainToolbarVm>();
         public MainMenuVm MainMenuVm => ProgramKernel.Get<MainMenuVm>();
     }
 }

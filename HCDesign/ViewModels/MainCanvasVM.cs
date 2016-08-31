@@ -7,9 +7,10 @@
 
 #endregion
 
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using HCDesign.Models;
-using Ninject;
 
 
 namespace HCDesign.ViewModels
@@ -26,5 +27,14 @@ namespace HCDesign.ViewModels
 
         public Brush BackgroundBrush => canvasModel.BackgroundBrush;
         public Brush ForegroundBrush => canvasModel.ForegroundBrush;
+
+
+        public void HandleEvent(object sender, RoutedEventArgs e)
+        {
+            if (e.RoutedEvent.Name == "Loaded")
+            {
+                canvasModel.SetCanvas( (Canvas)sender);
+            }            
+        }
     }
 }

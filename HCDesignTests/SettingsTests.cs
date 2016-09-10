@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using HCDesign.Common;
 
 namespace HCDesign.Tests
 {
@@ -18,9 +19,9 @@ namespace HCDesign.Tests
             var settings = Settings.FromDefault();
 
             Assert.IsTrue(settings.ShowGrid);
-            Assert.IsTrue(settings.LastDirectory == @".\");
-            Assert.IsTrue(settings.BackgroundColor == Color.FromRgb(0, 64, 64));
-            Assert.IsTrue(settings.ForegroundColor == Color.FromRgb(200, 64, 64));
+            Assert.IsTrue(settings.SelectedToolbarButton == ToolbarButtonEnum.Wire);
+            Assert.IsTrue(settings.BackgroundColor == Color.FromRgb(16, 16, 16));
+            Assert.IsTrue(settings.ForegroundColor == Color.FromRgb(200, 200, 64));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace HCDesign.Common
     public enum SettingsEnum
     {
         ShowGrid,
-        LastDirectory,
+        SelectedToolbarButton,
 
         BackgroundColor,
         ForegroundColor

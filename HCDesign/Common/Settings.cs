@@ -10,7 +10,7 @@
 using System.Windows.Media;
 using System.Xml.Serialization;
 
-namespace HCDesign
+namespace HCDesign.Common
 {
     [XmlRoot( Namespace = "Thunkster.Net" )]
     public class Settings
@@ -19,7 +19,7 @@ namespace HCDesign
         public bool ShowGrid { get; set; }
 
         [XmlElement]
-        public string LastDirectory { get; set; }
+        public ToolbarButtonEnum SelectedToolbarButton { get; set; }
 
         [XmlElement]
         public Color BackgroundColor { get; set; }
@@ -33,9 +33,9 @@ namespace HCDesign
             return new Settings()
             {
                 ShowGrid = true,
-                LastDirectory = @".\",
-                BackgroundColor = Color.FromRgb(0, 64, 64),
-                ForegroundColor = Color.FromRgb(200, 64, 64)
+                SelectedToolbarButton = ToolbarButtonEnum.Wire,
+                BackgroundColor = Color.FromRgb(16, 16, 16),
+                ForegroundColor = Color.FromRgb(200, 200, 64)
             };
         }
     }

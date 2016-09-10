@@ -52,8 +52,8 @@ namespace HCDesign.Models
                 case SettingsEnum.ShowGrid:
                     return ShowGrid;
 
-                case SettingsEnum.LastDirectory:
-                    return LastDirectory;
+                case SettingsEnum.SelectedToolbarButton:
+                    return SelectedToolbarButton;
 
                 case SettingsEnum.BackgroundColor:
                     return BackgroundColor;
@@ -74,8 +74,8 @@ namespace HCDesign.Models
                     ShowGrid = value;
                     break;
 
-                case SettingsEnum.LastDirectory:
-                    LastDirectory = value;
+                case SettingsEnum.SelectedToolbarButton:
+                    SelectedToolbarButton = value;
                     break;
 
                 case SettingsEnum.BackgroundColor:
@@ -102,10 +102,10 @@ namespace HCDesign.Models
             set { settings.ShowGrid = value; OnPropertyChanged(); }
         }
 
-        private string LastDirectory
+        private ToolbarButtonEnum SelectedToolbarButton
         {
-            get { return settings.LastDirectory; }
-            set { settings.LastDirectory = value; OnPropertyChanged(); }
+            get { return settings.SelectedToolbarButton; }
+            set { settings.SelectedToolbarButton = value; OnPropertyChanged(); }
         }
 
 

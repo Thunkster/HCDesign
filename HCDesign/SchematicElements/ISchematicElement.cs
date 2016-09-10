@@ -7,13 +7,17 @@
 
 #endregion
 
-using System.Collections.ObjectModel;
-using System.Windows.Shapes;
+using System.IO;
+using System.Windows;
 
 namespace HCDesign.SchematicElements
 {
     internal interface ISchematicElement
     {
-        ObservableCollection<Shape> GetShape();
+        UIElement GetElement();
+
+        void Serialize(StreamWriter writer);
+
+        void Deserialize(StreamReader reader);
     }
 }

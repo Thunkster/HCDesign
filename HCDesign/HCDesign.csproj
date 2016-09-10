@@ -85,6 +85,8 @@
     <Compile Include="Commands\CommandRouter.cs" />
     <Compile Include="Common\ControlsNinjectModule.cs" />
     <Compile Include="Common\SettingsEnum.cs" />
+    <Compile Include="Common\StateMachine\IStateMachine.cs" />
+    <Compile Include="Common\StateMachine\StateMachineEnumerations.cs" />
     <Compile Include="Models\ISettingsModel.cs" />
     <Compile Include="Models\MainCanvasModel.cs" />
     <Compile Include="Models\MainMenuModel.cs" />
@@ -92,12 +94,14 @@
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="ProgramKernel.cs" />
     <Compile Include="SchematicElements\ISchematicElement.cs" />
+    <Compile Include="SchematicElements\SchematicElementTypes.cs" />
     <Compile Include="SchematicElements\WireElement.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Common\Settings.cs" />
+    <Compile Include="Common\StateMachine\StateMachine.cs" />
     <Compile Include="ViewModels\MainCanvasVm.cs" />
     <Compile Include="ViewModels\MainMenuVm.cs" />
     <Compile Include="ViewModels\MainToolbarVm.cs" />
-    <Compile Include="ViewModels\ToolbarButtonEnum.cs" />
+    <Compile Include="Common\ToolbarButtonEnum.cs" />
     <Compile Include="Views\MainToolbar.xaml.cs">
       <DependentUpon>MainToolbar.xaml</DependentUpon>
     </Compile>

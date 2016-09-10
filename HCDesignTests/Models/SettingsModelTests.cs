@@ -20,7 +20,7 @@ namespace HCDesign.Models.Tests
     {
         private readonly Color testBackgroundColor = Color.FromRgb(32, 32, 132);
         private readonly Color testForegroundColor = Color.FromRgb(32, 132, 32);
-        private const string TestLastDirectory = @".\TestDirectory";
+        private const ToolbarButtonEnum TestSelectedToolbarButton = ToolbarButtonEnum.Wire;
         private const bool TestShowGrid = true;
 
 
@@ -32,7 +32,7 @@ namespace HCDesign.Models.Tests
             {
                 BackgroundColor = Color.FromRgb(0,0,0),
                 ForegroundColor = Color.FromRgb(0,0,0),
-                LastDirectory = @".\",
+                SelectedToolbarButton = ToolbarButtonEnum.Wire,
                 ShowGrid = false
             };
 
@@ -48,9 +48,9 @@ namespace HCDesign.Models.Tests
                         settingsModel.SetSetting(settingItem, TestShowGrid);
                         Assert.IsTrue(TestShowGrid == (bool)settingsModel.GetSetting(settingItem));
                         break;
-                    case SettingsEnum.LastDirectory:
-                        settingsModel.SetSetting(settingItem, TestLastDirectory);
-                        Assert.IsTrue(TestLastDirectory == (string)settingsModel.GetSetting(settingItem));
+                    case SettingsEnum.SelectedToolbarButton:
+                        settingsModel.SetSetting(settingItem, TestSelectedToolbarButton);
+                        Assert.IsTrue(TestSelectedToolbarButton == (ToolbarButtonEnum)settingsModel.GetSetting(settingItem));
                         break;
                     case SettingsEnum.BackgroundColor:
                         settingsModel.SetSetting(settingItem, testBackgroundColor);

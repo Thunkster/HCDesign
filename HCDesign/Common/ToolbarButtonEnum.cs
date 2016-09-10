@@ -7,7 +7,7 @@
 
 #endregion
 
-namespace HCDesign.ViewModels
+namespace HCDesign.Common
 {
     public enum ToolbarButtonEnum
     {
@@ -15,6 +15,7 @@ namespace HCDesign.ViewModels
         Resistor,
         Capacitor,
         Inductor,
-        Transistor
+        Transistor,
+        Jfet
     }
 }

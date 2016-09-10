@@ -7,12 +7,22 @@
 
 #endregion
 
+using HCDesign.Common;
 using HCDesign.ViewModels;
+using Ninject;
 
 namespace HCDesign.Models
 {
     public class MainToolbarModel
     {
+        private readonly ISettingsModel settingsModel;
+
+        [Inject]
+        public MainToolbarModel(ISettingsModel model)
+        {
+            settingsModel = model;
+        }
+
         public ToolbarButtonEnum SelectedButton { get; set; }
     }
 }

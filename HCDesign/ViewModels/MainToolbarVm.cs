@@ -11,6 +11,8 @@ using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using HCDesign.Commands;
+using HCDesign.Common;
+using HCDesign.Common.StateMachine;
 using HCDesign.Models;
 
 namespace HCDesign.ViewModels
@@ -19,11 +21,13 @@ namespace HCDesign.ViewModels
     {
         private readonly MainToolbarModel toolbarModel;
         private ISettingsModel SettingsModel { get; }
+        private IStateMachine StateMachine { get; }
 
-        public MainToolbarVm(ISettingsModel settingsModel)
+        public MainToolbarVm(ISettingsModel settingsModel, IStateMachine stateMachine)
         {
-            toolbarModel = new MainToolbarModel() {SelectedButton = ToolbarButtonEnum.Wire};
+            toolbarModel = new MainToolbarModel(SettingsModel);
 
+            StateMachine = stateMachine;
             SettingsModel = settingsModel;
             SettingsModel.Initialize();
         }
@@ -47,6 +51,7 @@ namespace HCDesign.ViewModels
         {
             var old = toolbarModel.SelectedButton;
             toolbarModel.SelectedButton = ToolbarButtonEnum.Wire;
+            StateMachine.SelectedToolbarButton = ToolbarButtonEnum.Wire;
 
             SendPropertyChanged(old);
             SendPropertyChanged(ToolbarButtonEnum.Wire);
@@ -56,6 +61,7 @@ namespace HCDesign.ViewModels
         {
             var old = toolbarModel.SelectedButton;
             toolbarModel.SelectedButton = ToolbarButtonEnum.Resistor;
+            StateMachine.SelectedToolbarButton = ToolbarButtonEnum.Resistor;
 
             SendPropertyChanged(old);
             SendPropertyChanged(ToolbarButtonEnum.Resistor);
@@ -65,6 +71,7 @@ namespace HCDesign.ViewModels
         {
             var old = toolbarModel.SelectedButton;
             toolbarModel.SelectedButton = ToolbarButtonEnum.Capacitor;
+            StateMachine.SelectedToolbarButton = ToolbarButtonEnum.Capacitor;
 
             SendPropertyChanged(old);
             SendPropertyChanged(ToolbarButtonEnum.Capacitor);
@@ -73,6 +80,7 @@ namespace HCDesign.ViewModels
         {
             var old = toolbarModel.SelectedButton;
             toolbarModel.SelectedButton = ToolbarButtonEnum.Inductor;
+            StateMachine.SelectedToolbarButton = ToolbarButtonEnum.Inductor;
 
             SendPropertyChanged(old);
             SendPropertyChanged(ToolbarButtonEnum.Inductor);
@@ -82,6 +90,7 @@ namespace HCDesign.ViewModels
         {
             var old = toolbarModel.SelectedButton;
             toolbarModel.SelectedButton = ToolbarButtonEnum.Transistor;
+            StateMachine.SelectedToolbarButton = ToolbarButtonEnum.Transistor;
 
             SendPropertyChanged(old);
             SendPropertyChanged(ToolbarButtonEnum.Transistor);

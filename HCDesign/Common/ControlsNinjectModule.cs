@@ -7,6 +7,7 @@
 
 #endregion
 
+using HCDesign.Common.StateMachine;
 using HCDesign.Models;
 using Ninject.Modules;
 
@@ -18,6 +19,8 @@ namespace HCDesign.Common
         {
             // MainCanvas:
             Bind<ISettingsModel>().To<SettingsModel>().InSingletonScope();
+            Bind<IStateMachine>().To<StateMachine.StateMachine>().InSingletonScope();
+
             Bind<MainMenuModel>().ToSelf().InTransientScope();
             Bind<MainToolbarModel>().ToSelf().InTransientScope();
             Bind<MainCanvasModel>().ToSelf().InTransientScope();
